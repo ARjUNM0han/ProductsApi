@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Header from './components/header';
 import SingleProduct from './pages/SingleProduct';
 import { Route, Routes } from 'react-router-dom';
+import NotFound from './pages/error/NotFound';
 function App() {
   return (
 
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path='/' element={<ProductList />} />
           <Route path='/single-product/:id' element={<SingleProduct />} />
+          <Route path='/*' element={<NotFound />} />
         </Routes>
         <Footer />
       </div>
