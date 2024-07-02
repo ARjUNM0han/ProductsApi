@@ -2,16 +2,23 @@ import { React, useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 function ProductList() {
     const [products, setProducts] = useState([])
 
 
+    // const fetchData = async () => {
+    //     var data = await fetch('https://fakestoreapi.com/products');
+    //     data = await data.json();
+    //     setProducts(data)
+    // }
+
     const fetchData = async () => {
-        var data = await fetch('https://fakestoreapi.com/products');
-        data = await data.json();
+        var data = await axios.get('https://fakestoreapi.com/products');
+        data = data.data
         setProducts(data)
     }
-
     // console.log(products)
 
     useEffect(() => {
@@ -39,31 +46,33 @@ function ProductList() {
                     <div>
                         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 rounded-3 mt-5 p-3">
                             {products.map(i => (
-                                <div className="col" key={i.id}>
-                                    <div className="card" >
-                                        <img
-                                            src={i.image}
-                                            style={{ 'height': 350 }}
-                                            className="card-img-top"
-                                            alt="product_image"
-                                        />
-                                        <div className="card-body">
-                                            <h5 className="card-title">{i.title.length > 24 ? i.title.slice(0, 24) + '....' : i.title}</h5>
-                                            <p className="card-text">
-                                                {i.category}
-                                            </p>
-                                            <p className="card-text">
-                                                $  {i.price}
-                                            </p>
-                                            <p className="card-text " >
-                                                <span className={i.rating.rate > 4 ? 'text-success' : i.rating.rate > 3 ? 'text-warning' : 'text-danger'}>
-                                                    <i className="fa-solid fa-star" />  {i.rating.rate}
-                                                </span>
-                                            </p>
-                                            <button className="btn btn-primary">view</button>
+                                <Link to={`/single-product/${i.id}`} relative='path' style={{ textDecoration: 'none' }} key={i.id}>
+                                    <div className="col " >
+                                        <div className="card " >
+                                            <img
+                                                src={i.image}
+                                                style={{ 'height': 350 }}
+                                                className="card-img-top"
+                                                alt="product_image"
+                                            />
+                                            <div className="card-body">
+                                                <h5 className="card-title">{i.title.length > 24 ? i.title.slice(0, 24) + '....' : i.title}</h5>
+                                                <p className="card-text">
+                                                    {i.category}
+                                                </p>
+                                                <p className="card-text">
+                                                    $  {i.price}
+                                                </p>
+                                                <p className="card-text " >
+                                                    <span className={i.rating.rate > 4 ? 'text-success' : i.rating.rate > 3 ? 'text-warning' : 'text-danger'}>
+                                                        <i className="fa-solid fa-star" />  {i.rating.rate}
+                                                    </span>
+                                                </p>
+                                                <button className="btn btn-primary">view</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             ))
                             }
                         </div>
