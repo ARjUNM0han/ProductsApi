@@ -9,12 +9,6 @@ function ProductList() {
     const [search, setSearch] = useState('')
 
 
-    // const fetchData = async () => {
-    //     var data = await fetch('https://fakestoreapi.com/products');
-    //     data = await data.json();
-    //     setProducts(data)
-    // }
-
     const fetchData = async () => {
         try {
             var data = await axios.get('https://fakestoreapi.com/products');
@@ -32,7 +26,7 @@ function ProductList() {
     }
     useEffect(() => {
         fetchData()
-    }, [])
+    }, [search])
     return (
         <>
             <Container className='mt-5'>
