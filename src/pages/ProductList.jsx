@@ -16,15 +16,19 @@ function ProductList() {
     // }
 
     const fetchData = async () => {
-        var data = await axios.get('https://fakestoreapi.com/products');
-        data = data.data
-        setProducts(data)
+        try {
+            var data = await axios.get('https://fakestoreapi.com/products');
+            data = data.data
+            setProducts(data)
+        } catch (error) {
+            console.error(error)
+        }
     }
     // console.log(products)
     const searchItem = async () => {
-       const data =  products.filter(i => (i.title + i.category).toLowerCase().trim().includes(search.toLocaleLowerCase().trim()))
-       console.log(data)
-       setProducts(data)
+        const data = products.filter(i => (i.title + i.category).toLowerCase().trim().includes(search.toLocaleLowerCase().trim()))
+        console.log(data)
+        setProducts(data)
     }
     useEffect(() => {
         fetchData()
@@ -44,7 +48,7 @@ function ProductList() {
                         </div>
                         <div className='d-flex justify-content-center'>
                             <input type="text" className='form-check w-50 rounded-3 input-group-text' onChange={(e) => setSearch(e.target.value)} />
-                            <button className='btn btn-primary ms-3' onClick={() =>searchItem()} >Search</button>
+                            <button className='btn btn-primary ms-3' onClick={() => searchItem()} >Search</button>
                         </div>
                     </Col>
                 </Row>

@@ -62,7 +62,7 @@ function SingleProduct() {
                     </div>
                 </section>
                 :
-                <div className=' d-flex justify-content-center text-center fs-1 my-5 loader'>
+                <div className=' d-flex justify-content-center text-center fs-1  loader' >
                     <span className="dot" />
                     <span className="dot" />
                     <span className="dot" />
