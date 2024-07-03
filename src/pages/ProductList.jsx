@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 function ProductList() {
     const [products, setProducts] = useState([])
+    const [search, setSearch] = useState('')
 
 
     // const fetchData = async () => {
@@ -20,11 +21,14 @@ function ProductList() {
         setProducts(data)
     }
     // console.log(products)
-
+    const searchItem = async () => {
+       const data =  products.filter(i => (i.title + i.category).toLowerCase().trim().includes(search.toLocaleLowerCase().trim()))
+       console.log(data)
+       setProducts(data)
+    }
     useEffect(() => {
         fetchData()
     }, [])
-
     return (
         <>
             <Container className='mt-5'>
@@ -37,6 +41,10 @@ function ProductList() {
                     <Col lg={6}>
                         <div className='d-flex justify-content-center align-items-center  mt-5'>
                             <h1>Welcome</h1>
+                        </div>
+                        <div className='d-flex justify-content-center'>
+                            <input type="text" className='form-check w-50 rounded-3 input-group-text' onChange={(e) => setSearch(e.target.value)} />
+                            <button className='btn btn-primary ms-3' onClick={() =>searchItem()} >Search</button>
                         </div>
                     </Col>
                 </Row>
