@@ -6,7 +6,7 @@ function NotFound() {
     return (
         <>
             <div className="content whole">
-                <svg  className='img' viewBox="0 0 960 300">
+                <svg className='img' viewBox="0 0 960 300">
                     <symbol id="s-text">
                         <text textAnchor="middle" x="50%" y="50%">
                             404
@@ -20,7 +20,7 @@ function NotFound() {
                         <use xlinkHref="#s-text" className="text" />
                     </g>
                 </svg>
-                <span className='head1'>Page Not Found</span>
+                <div>  <span className='head1'>Page Not Found</span></div>
                 <Link to={'/'}>
                     <div className='back-home'>Back to Home</div>
                 </Link>
